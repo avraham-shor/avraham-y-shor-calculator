@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>A.Y.Shor Calculator</title>
+</head>
+
+<body>
+    <div id="total"></div>
+    <div style="width: 100%">
+        <button type="button" value=7 onclick="calculate(this.value*1)">7</button>
+        <button type="button" value=8 onclick="calculate(this.value*1)">8</button>
+        <button type="button" value=9 onclick="calculate(this.value*1)">9</button>
+        <button type="button" value="/" onclick="calculate(this.value)">/</button>
+    </div>
+    <br>
+    <div style="width: 100%">
+        <button type="button" value=4 onclick="calculate(this.value*1)">4</button>
+        <button type="button" value=5 onclick="calculate(this.value*1)">5</button>
+        <button type="button" value=6 onclick="calculate(this.value*1)">6</button>
+        <button type="button" value="*" onclick="calculate(this.value)">*</button>
+    </div>
+    <br>
+    <div style="width: 100%">
+        <button type="button" value=1 onclick="calculate(this.value*1)">1</button>
+        <button type="button" value=2 onclick="calculate(this.value*1)">2</button>
+        <button type="button" value=3 onclick="calculate(this.value*1)">3</button>
+        <button type="button" value="-" onclick="calculate(this.value)">-</button>
+    </div>
+    <br>
+    <div style="width: 100%">
+        <button type="button" value="delete" onclick="del()">c</button>
+        <button type="button" value=0 onclick="calculate(this.value*1)">0</button>
+        <button type="button" value="=" onclick="equals()">=</button>
+        <button type="button" value="+" onclick="calculate(this.value)">+</button>
+    </div>
+    <div id="archives"></div>
+    <script>
+        let arr=[]
+        let sum = "";
+        let sumNumber = 0;
+        let operator ="+";
+        let sumFinely ="";
+        function calculate(n) {
+            console.log("calculate start, מכניס את כל המספרים והאופרטורים ומציג על המסך n= ",n)
+            sumFinely+=n;
+            document.getElementById("total").innerHTML=sumFinely; 
+            console.log("push in arr the numbers in a cell and the oporaterim in a cell n= ",n)
+            arr.push(n);
+            
+            console.log("calculate end, the array arr = ",arr)   
+        }
+        
+        function equals() {
+            console.log(" equals start , מחשב את התוצאות, ")
+            for (let d = 0; d < array.length; d++) {
+               if (arr[d]=="+"&arr[d+1]=="+") {
+                console.error("canot check + after + ")   
+               }
+                
+            }
+            if (!arr.includes("+")&!arr.includes("-")&!arr.includes("*")&!arr.includes("/")) {
+                console.error("missing a operator")
+            }
+            // reverse()
+            try{
+            for (let i = 0; i < arr.length; i++) {
+
+                let c = arr[i];
+               
+            if (typeof c == "number") {
+                sum += c;
+                }
+
+            else {
+            resuls(c);
+                 
+            }
+            
+        } 
+        resuls("+")
+        sumFinely+="="+ sumNumber
+        document.getElementById("total").innerHTML=sumFinely
+            }
+            catch{
+                console.error("the Error is in function equals")
+            }
+        console.log(" equals end , מחשב את התוצאות, ")       
+        }
+
+
+
+
+
+        function resuls(c) {
+            console.log(" resuls start , עושה את החישובים, ")
+            switch (operator) {
+                    case "+":
+                sumNumber += parseInt(sum);       
+                        break;
+                    case "-":
+                sumNumber -= parseInt(sum);
+                        break;
+                    case "*":
+                sumNumber *= parseInt(sum);
+                    break;
+                    case "/":
+                sumNumber /= parseInt(sum);
+                    break;
+                    default:
+                        break;
+                }
+                sum=""
+                operator=c;
+               
+                console.log(" resuls end , עושה את החישובים, ")       
+                }
+        
+            
+              function  del(){
+            document.getElementById("archives").innerHTML+=sumFinely+"<br>"
+            document.getElementById("total").innerHTML="";
+            sumFinely="";
+            sum="";
+            sumNumber=0;
+            arr=[];   
+            }
+
+
+
+
+            
+            function reverse() {
+                arr2=[]
+                if (arr.includes("*")) {
+                 alert(arr.indexOf("*"))
+                 for (let i = 0; i < arr.length; i++) {
+                     let c = arr[i];
+                     if (typeof c == "number" || c =="*" || c == "/") {
+                       arr2.push(c)
+                       arr[i]=NaN; 
+                     }
+                     else{
+                         i++;
+                         while (typeof arr[i]=="number") {
+                           i++;  
+                         }
+                     }
+                 }
+                 arr.forEach(e => {
+                    if (e==NaN) {
+                        arr.splice(e)
+                    } 
+                 });
+                 arr.unshift("+")
+                 arr.unshift(arr2)
+                 alert(arr)   
+                }
+            } 
+
+
+    </script>
+
+
+
+</body>
+
+</html>
